@@ -1,0 +1,42 @@
+{% load staticfiles %}
+{%  block extrastyle %}
+{#    <link rel="stylesheet" href="{% static "css/bootstrap.css" %}">#}
+    <link rel="stylesheet" href="{% static "experiment/css/FilePathFieldBrowser.css" %}">
+{%  endblock %}
+<script type="application/javascript">
+    var j = jQuery.noConflict();
+    function select_option(option) {
+        e = j("option[value='" + option + "']").prop("selected", true);
+{#        s = !e.prop('selected');#}
+{#        e.prop('selected', s);#}
+        j("tr[option]").removeClass("selected");
+{#        if (s) {#}
+{#            j("tr[option='" + option + "']").animate({#}
+{#                backgroundColor: "red",#}
+{#            }, 500);#}
+        j("tr[option='" + option + "']").addClass("selected");
+{#        }#}
+{#        else {#}
+{#            j("tr[option='" + option + "']").animate({#}
+{#                backgroundColor: "white",#}
+{#            }, 500);#}
+{#        }#}
+
+    };
+</script>
+<br>
+<table>
+    <thead><th>Image name</th><th>Preview</th>
+    </thead>
+        {% for option in options %}
+            <tr onclick="select_option('{{ option.0.0 }}'); return false;" option="{{ option.0.0 }}">
+                    <td align="center">
+                        {{ option.0.1 }}
+                    </td>
+                    <td align="center" style="text-align: center;">
+                        <img src="{{ option.1 }}"/>
+                    </td>
+            </tr>
+        {% endfor %}
+    </tr>
+</table>
