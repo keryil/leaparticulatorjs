@@ -39,6 +39,11 @@ theremin.addCallback(function(frame) {
         val = 110 * Math.pow(3, Math.abs(x + 200) / 200);
         output3.innerHTML = frame.hands[0].palmPosition[0] + ' ' + val;
         synth.setNote(val);
+        synth.volume.value = 0;
+        // console.log(synth.volume);
+    }
+    else {
+        synth.volume.value = -99;
     }
 });
 
